@@ -1,13 +1,16 @@
 set nocompatible
+set hidden
 filetype off
 
 filetype plugin indent on
 
+syntax on
+
 set number 
 set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab smarttab
+"set foldmethod=syntax
 
-
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>") "-> Use Tab key to expand emmet"
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>") 
 
 "============ Easy motion config ===========""
 
@@ -16,6 +19,7 @@ nmap s <Plug>(easymotion-overwin-f)
 nmap s <Plug>(easymotion-overwin-f2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+map <F7> mzgg=G`z
 
 "============================================" 
 
@@ -39,9 +43,18 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 
-set foldmethod=syntax
+"============================================" 
+
+"=========== NERD TREE config ===============" 
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-k><C-b> :NERDTreeToggle<CR>
 
 "============================================" 
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
 
 call vundle#begin()
 
@@ -53,5 +66,10 @@ Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'tmhedberg/matchit'
+Plugin 'statianzo/vim-jade'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()
