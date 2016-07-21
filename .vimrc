@@ -45,6 +45,12 @@ let g:javascript_plugin_flow = 1
 
 "============================================" 
 
+"=========== Typescript-vim config ==========" 
+let g:typescript_indent_disable = 1
+
+
+"============================================" 
+
 "=========== NERD TREE config ===============" 
 
 autocmd StdinReadPre * let s:std_in=1
@@ -52,6 +58,18 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-k><C-b> :NERDTreeToggle<CR>
 
 "============================================" 
+
+" Plugin key-mappings.
+ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+ xmap <C-k>     <Plug>(neosnippet_expand_target)
+"
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+"
+" " Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -71,5 +89,10 @@ Plugin 'statianzo/vim-jade'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'magarcia/vim-angular2-snippets'
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 
 call vundle#end()
