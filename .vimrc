@@ -10,6 +10,7 @@ set hlsearch
 set foldenable
 set foldlevelstart=10
 set foldmethod=indent
+set scrolloff=5
 
 filetype plugin indent on
 
@@ -95,6 +96,13 @@ let g:tmuxline_powerline_separators = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+
+let g:indentLine_color_term = 239
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '_'
+
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -118,5 +126,6 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
