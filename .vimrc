@@ -20,7 +20,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <space> za 
 
 set number 
-set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab smarttab
+set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
 
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>") 
 
@@ -127,5 +127,6 @@ Plugin 'rking/ag.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'Yggdroot/indentLine'
-
+Plugin 'mhinz/vim-signify'
+Plugin 'elzr/vim-json'
 call vundle#end()
