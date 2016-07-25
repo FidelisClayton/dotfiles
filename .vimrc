@@ -6,6 +6,7 @@ set t_Co=256
 syntax on
 
 set cursorline
+set nowrap
 
 set showcmd " mostrar as teclas de ação na barra
 set showmatch
@@ -44,6 +45,7 @@ let g:indentLine_leadingSpaceChar = '_'
 
 " NERDtree
 map <C-k><C-b> :NERDTreeToggle<CR> 
+let NERDTreeQuitOnOpen=1
 
 filetype plugin indent on  
 
