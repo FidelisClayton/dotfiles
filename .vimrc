@@ -24,6 +24,10 @@ set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
 
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>") 
 
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
 
 " CtrlP settings
 "let g:ctrlp_match_window = 'bottom,order:ttb'
