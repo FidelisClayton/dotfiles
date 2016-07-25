@@ -1,136 +1,68 @@
-set nocompatible
-set hidden
-set cursorline
-set showcmd
-set lazyredraw
-set wildmenu
+set nocompatible              " be iMproved, required
+filetype off  
+
+set nu " Mostrar número das linhas
+set t_Co=256
+syntax on
+
+set showcmd " mostrar as teclas de ação na barra
 set showmatch
-set incsearch
-set hlsearch
+set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
+
 set foldenable
 set foldlevelstart=10
 set foldmethod=indent
-set scrolloff=5
-
-filetype plugin indent on
-
-syntax on
-
-nnoremap <leader><space> :nohlsearch<CR> 
-nnoremap <space> za 
-
-set number 
-set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
-
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>") 
-
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-
-" CtrlP settings
-"let g:ctrlp_match_window = 'bottom,order:ttb'
-"let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-"Easy motion config
-
-let g:EasyMotion_do_mapping = 0
-nmap s <Plug>(easymotion-overwin-f)
-nmap s <Plug>(easymotion-overwin-f2)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <F7> mzgg=G`z
-
-"Vundle config
-
-set rtp+=~/.vim/bundle/Vundle.vim
-
-"HTML.vim config
-
-let g:html5_event_handler_attributes_complete = 0
-let g:html5_rdfa_attributes_complete = 0
-let g:html5_microdata_attributes_complete = 0
-let g:html5_aria_attributes_complete = 0
-
-"Javascript.vim config
-
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
-
-"Typescript-vim config
-let g:typescript_indent_disable = 1
 
 
-"NERD TREE config
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-k><C-b> :NERDTreeToggle<CR>
+nnoremap <leader><space> :nohlsearch<CR>  " fold com a tecla espaço
+nnoremap <space> za " fold com a tecla espaço
 
-" Plugin key-mappings.
- imap <C-k>     <Plug>(neosnippet_expand_or_jump)
- smap <C-k>     <Plug>(neosnippet_expand_or_jump)
- xmap <C-k>     <Plug>(neosnippet_expand_target)
- 
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
+imap <C-c> <CR><Esc>O "Ctrl+C quebra linha e posiciona o curso dentro das {, [, "
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")  " Usar emmet com a tecla tab
 
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+" YouCompleteMe
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extra_conf=0
+set completeopt-=preview
 
-" syntastic
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-set laststatus=2
-
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
-
+" Tmux
 let g:tmuxline_preset = 'nightly_fox'
 let g:tmuxline_powerline_separators = 0
 
+" Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-
+" Indentline
 let g:indentLine_color_term = 239
 let g:indentLine_color_tty_light = 7 " (default: 4)
 let g:indentLine_color_dark = 1 " (default: 2)
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '_'
 
+" NERDtree
+map <C-k><C-b> :NERDTreeToggle<CR> " Ativar NERDtree usando CTRL + K + B
+
+filetype plugin indent on  
+
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'mattn/emmet-vim'
-Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'tmhedberg/matchit'
-Plugin 'statianzo/vim-jade'
-Plugin 'ternjs/tern_for_vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Raimondi/delimitMate' " Fecha a chaves, parenteses, aspas...
+Plugin 'scrooloose/syntastic' " Syntax lint
+Plugin 'Valloric/YouCompleteMe' "Autocomplete
+Plugin 'marijnh/tern_for_vim' "Autocomplete para JS
+Plugin 'bling/vim-airline' " Interface
+Plugin 'Yggdroot/indentLine' 
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'leafgarland/typescript-vim'
-Bundle 'magarcia/vim-angular2-snippets'
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'bling/vim-airline'
-Plugin 'Yggdroot/indentLine'
-Plugin 'mhinz/vim-signify'
-Plugin 'elzr/vim-json'
-call vundle#end()
+Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/nerdtree'
+
+" Syntax
+
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+
+call vundle#end()            " required
