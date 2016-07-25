@@ -13,13 +13,13 @@
 ### 4th Install YouCompleteMe
 > $ cd ~/.vim/bundle/YouCompleteMe/
 
-> $ apt-get install python-dev
+> $ apt-get install python-dev cmake
 
 > $ git submodule update --init --recursive
 
 > $ ./install.py --tern-completer 
 
-## Shortcuts
+## Custom shortcuts
 
 | Command        | Action       |
 | ------------- |:-------------:|
