@@ -5,6 +5,8 @@ set nu " Mostrar número das linhas
 set t_Co=256
 syntax on
 
+set cursorline
+
 set showcmd " mostrar as teclas de ação na barra
 set showmatch
 set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
@@ -41,7 +43,7 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '_'
 
 " NERDtree
-map <C-k><C-b> :NERDTreeToggle<CR> " Ativar NERDtree usando CTRL + K + B
+map <C-k><C-b> :NERDTreeToggle<CR> 
 
 filetype plugin indent on  
 
@@ -58,7 +60,6 @@ Plugin 'bling/vim-airline' " Interface
 Plugin 'Yggdroot/indentLine' 
 Plugin 'scrooloose/nerdtree'
 Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/nerdtree'
 
 " Syntax
 
