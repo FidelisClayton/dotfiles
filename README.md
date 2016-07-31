@@ -23,6 +23,7 @@
 
 | Command        | Action       |
 | ------------- |:-------------:|
+| , | Leader key|
 | CTRL + K + B   | Toggle NERDTree |
 | , ESC | Start EasyMotion |
 | ,vv | Jump to controller's view (Rails)|
