@@ -1,27 +1,33 @@
 set nocompatible              " be iMproved, required
 
-set nu " Mostrar número das linhas
-set t_Co=256
+set nu                " Show line number
+"set t_Co=256 
 
-syntax on
+syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 "
-set cursorline
+"set cursorline
 set nowrap
 
-set showcmd " mostrar as teclas de ação na barra
-set showmatch
+set showcmd " Show the commands on the bottom bar
+set showmatch " When a bracket is inserted automatically jump to the matching one
+
+" Tab and indenting
 set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
 
-set foldenable
-set foldlevelstart=10
-set foldmethod=indent
+set foldenable " Enable code folding
+set foldlevelstart=10 " Auto fold code on level 10 or more
+set foldmethod=indent " Use indenting to fold
+
+set hlsearch " Highlight search
+
+set pastetoggle=<F10>  " Bind `F10` to `:set paste`
 
 :let mapleader = ","
 
-autocmd BufEnter * :syntax sync fromstart
+autocmd BufEnter * :syntax sync fromstart 
 
 au FileType ruby setl sw=2 sts=2 et
 au FileType eruby setl sw=2 sts=2 et
@@ -32,8 +38,8 @@ autocmd BufNewFile,BufRead *.html.haml set syntax=haml
 nnoremap <leader><space> :nohlsearch<CR>  " fold com a tecla espaço
 nnoremap <space> za " fold com a tecla espaço
 
-imap <C-c> <CR><Esc>O "Ctrl+C quebra linha e posiciona o curso dentro das {, [, "
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")  " Usar emmet com a tecla tab
+imap <C-c> <CR><Esc>O 
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>") 
 
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt=0
@@ -63,7 +69,9 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '_'
 
 " NERDtree
-map <C-k><C-b> :NERDTreeToggle<CR> 
+"silent! map <F3> :NERDTreeFind<CR>
+map <F2> :NERDTreeToggle<CR>
+
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -73,12 +81,27 @@ let g:NERDTreeWinSize = 30
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
-let g:syntastic_quiet_messages=0
+
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error location panel
+        Errors
+    endif
+endfunction
+
+nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
+
 
 " ctrl.p
+let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode =0
+
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|WEB-INF'
+
 nnoremap <silent> <D-P> :ClearCtrlPCache<cr> " limpar o cache
 map ,ja :CtrlP <CR>app/assets " ,ja para abrir app/assets
 map ,jm :CtrlP <CR>app/models
@@ -95,6 +118,12 @@ map ,jV :CtrlP <CR>vendor
 map ,jF :CtrlP <CR>factories
 map ,jT :CtrlP <CR>test
 
+map ,ac :CtrlP <CR>dev/js/controllers
+map ,as :CtrlP <CR>dev/js/services
+map ,djs :CtrlP <CR>dev/js
+map ,ds :CtrlP <CR>dev/styles
+map ,dv :CtrlP <CR>dev/views
+
 " rails.vim
 nnoremap ,vv :Rview<cr>
 nnoremap ,cc :Econtroller<cr>
@@ -106,6 +135,13 @@ nmap ,<ESC> ,,w
 nmap ,<S-ESC> ,,b
 
 filetype plugin indent on  
+
+" VimCSS3Syntax
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -125,6 +161,11 @@ Plugin 'tpope/vim-haml'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-surround'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'chriskempson/tomorrow-theme'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'tomtom/tcomment_vim'
 
 " Syntax
 
