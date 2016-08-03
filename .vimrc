@@ -3,6 +3,8 @@ set nocompatible              " be iMproved, required
 set nu                " Show line number
 "set t_Co=256 
 
+set noswapfile 
+set ruler
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -26,6 +28,8 @@ set hlsearch " Highlight search
 set pastetoggle=<F10>  " Bind `F10` to `:set paste`
 
 :let mapleader = ","
+
+set background=dark
 
 autocmd BufEnter * :syntax sync fromstart 
 
@@ -62,11 +66,11 @@ let g:airline_readonly_symbol = '⭤'
 let g:airline_linecolumn_prefix = '⭡'
 
 " Indentline
-let g:indentLine_color_term = 239
-let g:indentLine_color_tty_light = 7 " (default: 4)
-let g:indentLine_color_dark = 1 " (default: 2)
-let g:indentLine_leadingSpaceEnabled = 1
-let g:indentLine_leadingSpaceChar = '_'
+" let g:indentLine_color_term = 239
+" let g:indentLine_color_tty_light = 7 " (default: 4)
+" let g:indentLine_color_dark = 1 " (default: 2)
+" let g:indentLine_leadingSpaceEnabled = 1
+" let g:indentLine_leadingSpaceChar = '_'
 
 " NERDtree
 "silent! map <F3> :NERDTreeFind<CR>
@@ -143,6 +147,11 @@ augroup VimCSS3Syntax
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
+" vim-indent-guides
+" let g:indent_guides_auto_colors = 0
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -156,20 +165,22 @@ Plugin 'bling/vim-airline' " Interface
 Plugin 'Yggdroot/indentLine' 
 Plugin 'scrooloose/nerdtree'
 Plugin 'mattn/emmet-vim'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-haml'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
-Plugin 'digitaltoad/vim-pug'
 Plugin 'chriskempson/tomorrow-theme'
-Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'godlygeek/tabular'
+Plugin 'vimwiki/vimwiki'
 
 " Syntax
-
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-haml'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'digitaltoad/vim-pug', {'for': 'pug'}
+Plugin 'vim-scripts/jade.vim',   { 'for': 'jade' }
 
 call vundle#end()            " required
