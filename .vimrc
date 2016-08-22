@@ -3,6 +3,9 @@ set nocompatible              " be iMproved, required
 set nu                " Show line number
 "set t_Co=256 
 
+
+:nmap <F6> :%s/^\s*/&& <CR>
+
 set noswapfile 
 set ruler
 syntax on             " Enable syntax highlighting
@@ -23,7 +26,7 @@ set foldenable " Enable code folding
 set foldlevelstart=10 " Auto fold code on level 10 or more
 set foldmethod=indent " Use indenting to fold
 
-set hlsearch " Highlight search
+" set hlsearch " Highlight search
 
 set pastetoggle=<F10>  " Bind `F10` to `:set paste`
 
@@ -55,15 +58,40 @@ let g:tmuxline_preset = 'nightly_fox'
 let g:tmuxline_powerline_separators = 0
 
 " Airline
+set t_Co=256
+set encoding=utf-8
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline_branch_prefix = '⭠ '
-let g:airline_readonly_symbol = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
 
 " Indentline
 " let g:indentLine_color_term = 239
@@ -81,10 +109,16 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 30
 
+" jsx
+let g:jsx_ext_required = 0
+let g:jsx_pragma_required = 1
+
+
 " Syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
+" let g:syntastic_javascript_checkers = ['eslint']
 
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
@@ -162,6 +196,7 @@ Plugin 'scrooloose/syntastic' " Syntax lint
 Plugin 'Valloric/YouCompleteMe' "Autocomplete
 Plugin 'marijnh/tern_for_vim' "Autocomplete para JS
 Plugin 'bling/vim-airline' " Interface
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine' 
 Plugin 'scrooloose/nerdtree'
 Plugin 'mattn/emmet-vim'
@@ -173,6 +208,8 @@ Plugin 'chriskempson/tomorrow-theme'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'godlygeek/tabular'
 Plugin 'vimwiki/vimwiki'
+Plugin 'powerline/powerline'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Syntax
 Plugin 'vim-ruby/vim-ruby'
@@ -182,5 +219,6 @@ Plugin 'tpope/vim-haml'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'digitaltoad/vim-pug', {'for': 'pug'}
 Plugin 'vim-scripts/jade.vim',   { 'for': 'jade' }
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()            " required
