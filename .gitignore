@@ -1,7 +1,1 @@
-*
-!.vimrc
-!.gitignore
-!.tmux.conf
-!.tern-config
-!./vimwiki
-".bashrc
+/plugged/
